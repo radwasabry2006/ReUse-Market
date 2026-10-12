@@ -10,9 +10,9 @@ ReUse Market is a web platform that allows users to sell their used products or 
 
 ## 👥 Team Members
 1. Radwa Sabry
-2. Malak Elsharkawy
-3. Nada
-4. Ibrahim
+2. Malak Atallh Hussien
+3. Nada Ibrahem
+4. Ibrahim Abdelrazek
 
 ## 🎓 Instructor
 **Hesham Mohamed**
