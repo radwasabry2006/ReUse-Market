@@ -1,0 +1,1334 @@
+/* ==========================================================
+   ReUse Market - global styles
+   ========================================================== */
+:root {
+  --ru-green: #12694f;
+  --ru-green-dark: #0f4d3c;
+  --ru-ink: #163f33;
+  --ru-muted: #5d7a6e;
+  --ru-mint: #dcebdc;
+  --ru-mint-soft: rgba(220, 235, 220, 0.75);
+  --ru-cream: #fbf9f1;
+  --ru-line: #cfe0d3;
+  --ru-maroon: #8c3b4c;
+  --ru-shadow: 0 6px 20px rgba(24, 82, 62, 0.1);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ru-ink);
+  background: #f7f5e8;
+}
+
+/* Plain background (leaves + recycle sign) shared by every page.
+   It is fixed, so the leaves stay in the corners while you scroll. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('./assets/page-bg.jpeg') center / cover no-repeat;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app-main {
+  flex: 1;
+}
+
+.ru-serif {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  color: var(--ru-green-dark);
+}
+
+.ru-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ru-muted);
+  margin: 0;
+}
+
+.ru-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+/* ---------- buttons ---------- */
+.ru-btn {
+  background: var(--ru-green);
+  border: 1px solid var(--ru-green);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.ru-btn:hover,
+.ru-btn:focus-visible {
+  background: var(--ru-green-dark);
+  border-color: var(--ru-green-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--ru-shadow);
+}
+.ru-btn-outline {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--ru-green);
+}
+.ru-btn-outline:hover,
+.ru-btn-outline:focus-visible {
+  background: var(--ru-green);
+  color: #fff;
+}
+
+/* ==========================================================
+   Navbar
+   ========================================================== */
+.ru-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: rgba(251, 249, 241, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.ru-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  gap: 1rem;
+}
+.ru-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--ru-green-dark);
+}
+.ru-brand:hover {
+  color: var(--ru-green-dark);
+}
+
+.ru-logo {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ru-logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+}
+.ru-brand-name {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.ru-brand-tag {
+  font-size: 0.74rem;
+  color: var(--ru-muted);
+}
+
+.ru-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+}
+.ru-link {
+  position: relative;
+  color: var(--ru-green-dark);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.4rem 0.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.ru-link:hover {
+  color: var(--ru-green);
+}
+/* the Log out item is a <button>, so remove the default button look */
+button.ru-link {
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ru-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ru-green);
+}
+.ru-add {
+  background: var(--ru-green);
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+}
+.ru-add:hover {
+  background: var(--ru-green-dark);
+  color: #fff;
+}
+.ru-add.active::after {
+  left: 12%;
+  right: 12%;
+  bottom: -11px;
+}
+.ru-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(18, 105, 79, 0.35);
+}
+.ru-icon-link {
+  position: relative;
+  display: inline-flex;
+  color: var(--ru-green-dark);
+}
+.ru-icon-link:hover {
+  color: var(--ru-green);
+}
+.ru-icon-link.active {
+  color: var(--ru-green);
+}
+.ru-badge {
+  position: absolute;
+  top: -8px;
+  right: -9px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #19b37a;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.ru-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #c7e8d6;
+  color: var(--ru-green-dark);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.ru-avatar-link.active::after {
+  left: -4px;
+  right: -4px;
+}
+
+/* hamburger */
+.ru-toggle {
+  border: 0;
+  background: transparent;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.ru-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ru-green-dark);
+  border-radius: 2px;
+}
+
+@media (max-width: 991.98px) {
+  .ru-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    background: rgba(251, 249, 241, 0.98);
+    border-bottom: 1px solid var(--ru-line);
+    box-shadow: var(--ru-shadow);
+  }
+  .ru-menu.open {
+    display: flex;
+  }
+  .ru-divider {
+    width: 100%;
+    height: 1px;
+  }
+  .ru-link.active::after {
+    bottom: -2px;
+  }
+  .ru-add.active::after {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   Footer
+   ========================================================== */
+.ru-footer {
+  background: rgba(240, 244, 232, 0.92);
+  border-top: 1px solid rgba(18, 105, 79, 0.08);
+  padding: 1.1rem 0;
+}
+.ru-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+.ru-footer-sep {
+  width: 2px;
+  height: 36px;
+  background: var(--ru-green);
+  opacity: 0.8;
+}
+.ru-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ru-green-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+.ru-footer-link:hover {
+  color: var(--ru-green);
+}
+.ru-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--ru-green-dark);
+}
+@media (max-width: 991.98px) {
+  .ru-footer-inner {
+    justify-content: center;
+    text-align: center;
+  }
+  .ru-footer-sep {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   Shared bits
+   ========================================================== */
+.ru-sparkle {
+  color: #3c9a73;
+  flex: none;
+}
+.ru-sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.ru-sec-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.ru-sec-title h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  margin: 0.1rem 0 0;
+}
+.ru-viewall {
+  color: var(--ru-green-dark);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.ru-viewall:hover {
+  color: var(--ru-green);
+}
+
+.ru-empty-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  box-shadow: var(--ru-shadow);
+  padding: 2.5rem 1.5rem;
+  color: var(--ru-green-dark);
+}
+
+/* ==========================================================
+   HOME
+   ========================================================== */
+.ru-hero {
+  position: relative;
+  /* full screen height minus the navbar (76px), but never shorter than 640px */
+  min-height: max(640px, calc(100vh - 76px));
+  display: flex;
+  /* text sits in the empty top-left of the photo, above the mug and books */
+  align-items: flex-start;
+  padding-top: clamp(40px, 11vh, 140px);
+  overflow: hidden;
+}
+/* the hero photo sits on the right and fades softly into the page background */
+.ru-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* the hero photo IS the background: it covers the whole section.
+     "bottom" keeps the objects visible, only the empty top gets cropped */
+  background: url('./assets/hero-bg.jpeg') center bottom / cover no-repeat;
+}
+.ru-hero .container {
+  position: relative;
+  z-index: 1;
+}
+.ru-hero h1 {
+  /* shrinks a bit on short screens so the text never touches the mug */
+  font-size: clamp(2.3rem, min(5vw, 8vh), 3.6rem);
+  line-height: 1.12;
+  max-width: 7.4em; /* breaks the title into 3 lines like the design */
+  margin-bottom: 1.1rem;
+}
+.ru-hero p {
+  max-width: 380px;
+  color: #35574b;
+  margin-bottom: 1.75rem;
+}
+.ru-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+@media (max-width: 991.98px) {
+  .ru-hero {
+    align-items: flex-start;
+    min-height: 0;
+    padding: 2.5rem 0 340px;
+  }
+  .ru-hero::before {
+    top: auto;
+    left: 0;
+    height: 340px;
+    aspect-ratio: auto;
+    background-size: auto 100%;
+    background-position: 78% bottom;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 90%, transparent 100%);
+  }
+}
+
+.ru-section {
+  padding: 2.25rem 0 0.5rem;
+}
+
+/* categories */
+.ru-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+.ru-cat {
+  background: var(--ru-mint-soft);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  min-height: 92px;
+  padding: 0.9rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--ru-green-dark);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.ru-cat:hover {
+  background: #cfe6d2;
+  color: var(--ru-green-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--ru-shadow);
+}
+@media (max-width: 991.98px) {
+  .ru-cat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 575.98px) {
+  .ru-cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+  }
+}
+
+/* item cards */
+.ru-card {
+  position: relative;
+  height: 100%;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--ru-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s;
+}
+.ru-card:hover {
+  transform: translateY(-3px);
+}
+.ru-card-img {
+  position: relative;
+  height: 160px;
+  background: #eef3ea;
+}
+.ru-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ru-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.ru-tag-sale {
+  background: var(--ru-maroon);
+  color: #fff;
+}
+.ru-tag-donate {
+  background: #cfe9d5;
+  color: var(--ru-green-dark);
+}
+.ru-fav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #a33a4e;
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s;
+}
+.ru-fav:hover {
+  transform: scale(1.12);
+}
+.ru-card-body {
+  padding: 0.85rem 0.9rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+.ru-card-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+  color: #1a2f28;
+}
+.ru-card-price {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+  color: #1a2f28;
+}
+.ru-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #3f5249;
+  margin-bottom: 0.5rem;
+}
+.ru-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.ru-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+.ru-card-actions .ru-btn {
+  flex: 1;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.9rem;
+}
+.ru-icon-btn {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: #e6efe5;
+  color: var(--ru-green-dark);
+  display: grid;
+  place-items: center;
+  transition: background 0.15s;
+}
+.ru-icon-btn:hover {
+  background: #cfe3cf;
+}
+.ru-icon-btn.in-cart {
+  background: var(--ru-green);
+  color: #fff;
+}
+
+/* simple steps */
+.ru-steps-wrap {
+  margin-top: 2.5rem;
+  padding: 2rem 0 3rem;
+  background: linear-gradient(180deg, rgba(220, 235, 220, 0) 0, rgba(220, 235, 220, 0.7) 18%, rgba(220, 235, 220, 0.7) 100%);
+  border-radius: 60px 60px 0 0;
+}
+.ru-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.ru-step {
+  width: 190px;
+  text-align: center;
+}
+.ru-step-icon {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: #dcebdc;
+  color: var(--ru-green);
+  display: grid;
+  place-items: center;
+}
+.ru-step h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--ru-green-dark);
+}
+.ru-step p {
+  font-size: 0.82rem;
+  color: #4c665b;
+  margin: 0;
+}
+.ru-step-arrow {
+  margin-top: 26px;
+  color: var(--ru-green-dark);
+}
+@media (max-width: 575.98px) {
+  .ru-step-arrow {
+    display: none;
+  }
+  .ru-steps {
+    gap: 1.5rem;
+  }
+}
+
+.ru-globe {
+  position: relative;
+  width: min(280px, 80%);
+  margin: 0 auto;
+}
+.ru-globe svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.ru-globe-badge {
+  position: absolute;
+  right: -4%;
+  bottom: 2%;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ru-green);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--ru-shadow);
+}
+
+/* ==========================================================
+   ADD ITEM
+   ========================================================== */
+.ru-page-title {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 1.25rem;
+}
+.ru-form-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.93);
+  border-radius: 28px;
+  box-shadow: 0 12px 40px rgba(24, 82, 62, 0.12);
+  padding: 1.6rem 1.75rem 1.9rem;
+}
+.ru-form-card h2 {
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0;
+  color: #12302a;
+}
+.ru-form-sub {
+  text-align: center;
+  color: var(--ru-green);
+  margin-bottom: 1.1rem;
+}
+.ru-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: #12302a;
+  display: block;
+}
+.ru-input {
+  width: 100%;
+  border: 1px solid var(--ru-line);
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.55rem 1rem;
+  color: #12302a;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ru-input::placeholder {
+  color: #8da398;
+}
+.ru-input:focus {
+  border-color: var(--ru-green);
+  box-shadow: 0 0 0 3px rgba(18, 105, 79, 0.15);
+}
+textarea.ru-input {
+  border-radius: 16px;
+  resize: vertical;
+  min-height: 90px;
+}
+.ru-input.is-invalid {
+  border-color: #c0485c;
+}
+.ru-error {
+  color: #b23a4e;
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+.ru-drop {
+  border: 1.5px dashed #9fc3ae;
+  border-radius: 18px;
+  background: #f4f8f3;
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  color: var(--ru-green-dark);
+  transition: background 0.15s, border-color 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.ru-drop:hover,
+.ru-drop.dragging {
+  background: #e8f2e8;
+  border-color: var(--ru-green);
+}
+.ru-drop small {
+  color: #53695f;
+}
+.ru-drop-preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+.ru-drop-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: rgba(255, 255, 255, 0.95);
+  color: #a33a4e;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.ru-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.ru-pill {
+  border: 1px solid var(--ru-line);
+  background: #fff;
+  color: var(--ru-green-dark);
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  transition: background 0.15s, color 0.15s;
+}
+.ru-pill:hover {
+  background: #e8f2e8;
+}
+.ru-pill.active {
+  background: var(--ru-green);
+  border-color: var(--ru-green);
+  color: #fff;
+}
+.ru-publish {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+}
+.ru-page:has(.ru-form-card) {
+  background: transparent !important;
+}
+/* ==========================================================
+   PROFILE  (taller boxes, the page scrolls)
+   ========================================================== */
+.ru-profile {
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
+}
+.ru-panel {
+  background: rgba(255, 255, 255, 0.94);
+  border-radius: 22px;
+  box-shadow: var(--ru-shadow);
+}
+.ru-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.25rem 2.25rem;
+  margin-bottom: 1.5rem;
+}
+.ru-profile-avatar {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #dcebdc;
+  color: var(--ru-green-dark);
+  display: grid;
+  place-items: center;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+}
+.ru-profile-head h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin: 0.2rem 0;
+}
+.ru-profile-email {
+  color: #4b6358;
+  margin: 0;
+  word-break: break-all;
+}
+.ru-profile-head .ru-btn {
+  margin-left: auto;
+  box-shadow: 0 6px 14px rgba(18, 105, 79, 0.3);
+}
+@media (max-width: 767.98px) {
+  .ru-profile-head {
+    flex-wrap: wrap;
+    padding: 1.5rem;
+  }
+  .ru-profile-head .ru-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.ru-stat {
+  padding: 2rem 1.75rem;
+  height: 100%;
+}
+.ru-stat strong {
+  display: block;
+  font-family: 'Lora', serif;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--ru-green-dark);
+  margin-bottom: 0.7rem;
+}
+.ru-stat span {
+  color: #4b6358;
+}
+.ru-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin: 2rem 0 2.25rem;
+  flex-wrap: wrap;
+}
+.ru-tab {
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ru-green-dark);
+  padding: 0.65rem 1.6rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+.ru-tab:hover {
+  background: #e3efe2;
+}
+.ru-tab.active {
+  background: var(--ru-green);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(18, 105, 79, 0.3);
+}
+.ru-activity-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 0.4rem 0 1.5rem;
+}
+.ru-empty {
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 3rem 1.5rem;
+  color: var(--ru-green-dark);
+}
+.ru-empty h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0;
+}
+.ru-empty p {
+  color: #5a7166;
+  margin: 0;
+}
+.ru-listings {
+  min-height: 340px;
+  padding: 1.75rem;
+}
+.ru-success {
+  background: #d6efdf;
+  color: var(--ru-green-dark);
+  border-radius: 14px;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.ru-success button {
+  border: 0;
+  background: transparent;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--ru-green-dark);
+}
+/*==========================================================
+    Explore page
+   ========================================================== */
+  .explore-page {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+    url('/src/assets/page-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 50px;
+  padding-bottom: 70px;
+}
+/*=======================================
+Product Details
+==========================================*/
+
+.pd-page {
+  min-height: 75vh;
+  padding: 35px 0 65px;
+  background: #fbfaf4;
+}
+
+.pd-heading {
+  color: #176b50;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.pd-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 35px;
+  align-items: start;
+}
+
+.pd-image-section {
+  width: 100%;
+}
+
+.pd-main-image {
+  width: 100%;
+  height: 390px;
+  background: #eee9df;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e7e2d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pd-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pd-no-image {
+  color: #777;
+  font-size: 15px;
+}
+
+.pd-info {
+  padding: 8px 0;
+  color: #292929;
+}
+
+.pd-category {
+  display: inline-block;
+  background: #e6f1e9;
+  color: #176b50;
+  padding: 6px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.pd-product-name {
+  font-size: 27px;
+  font-weight: 700;
+  color: #174f3e;
+  margin-bottom: 10px;
+}
+
+.pd-price {
+  font-size: 25px;
+  font-weight: 700;
+  color: #16805d;
+  margin-bottom: 22px;
+}
+
+.pd-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pd-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.pd-detail svg {
+  color: #24765b;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.pd-detail strong,
+.pd-description strong {
+  color: #202020;
+  font-weight: 700;
+}
+
+.pd-detail-icon {
+  color: #24765b;
+  font-weight: 700;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.pd-description {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.pd-description p {
+  margin: 5px 0 0;
+  color: #555;
+}
+
+.pd-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.pd-cart-btn {
+  flex: 1;
+  min-height: 49px;
+  border: none;
+  border-radius: 30px;
+  background: #176b50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.pd-cart-btn:hover {
+  background: #10543e;
+  transform: translateY(-2px);
+}
+
+.pd-cart-btn.added {
+  background: #6c8277;
+}
+
+.pd-favorite-btn {
+  width: 49px;
+  height: 49px;
+  border: 1px solid #176b50;
+  border-radius: 50%;
+  background: transparent;
+  color: #176b50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pd-favorite-btn:hover,
+.pd-favorite-btn.active {
+  background: #176b50;
+  color: white;
+}
+
+.pd-not-found {
+  min-height: 60vh;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.pd-not-found h2 {
+  color: #176b50;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .pd-page {
+    padding: 25px 0 45px;
+  }
+
+  .pd-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .pd-heading {
+    margin-bottom: 20px;
+  }
+
+  .pd-main-image {
+    height: 300px;
+  }
+
+  .pd-product-name {
+    font-size: 23px;
+  }
+
+  .pd-info {
+    padding: 0;
+  }
+}
+
+
+/* ================================
+   ABOUT & CONTACT PAGES
+================================ */
+
+.ru-page {
+  min-height: 70vh;
+  background-color: #fafbf9;
+}
+
+/* Page headings */
+.ru-page .ru-serif {
+  color: #243b2e;
+  letter-spacing: -0.5px;
+}
+
+.ru-page .text-success {
+  color: #39845a !important;
+}
+
+.ru-page .text-muted {
+  color: #718078 !important;
+}
+
+/* About page cards */
+.ru-page .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+}
+
+.ru-page .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(36, 59, 46, 0.10) !important;
+}
+
+/* Soft green sections */
+.ru-page [style*="eaf4ed"] {
+  background-color: #eaf4ed !important;
+}
+
+/* Buttons */
+.ru-page .ru-btn {
+  background-color: #39845a;
+  color: #ffffff;
+  border: 1px solid #39845a;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.ru-page .ru-btn:hover {
+  background-color: #286a45;
+  border-color: #286a45;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.ru-page .badge {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Contact page form */
+.ru-page .form-label {
+  color: #304b3b;
+  font-size: 14px;
+}
+
+.ru-page .form-control {
+  border: 1px solid #dce6dd;
+  border-radius: 10px;
+  background-color: #fcfdfb;
+  color: #263b2f;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ru-page .form-control:focus {
+  border-color: #39845a;
+  box-shadow: 0 0 0 3px rgba(57, 132, 90, 0.12);
+  background-color: #ffffff;
+  outline: none;
+}
+
+.ru-page .form-control::placeholder {
+  color: #a3afa6;
+  font-size: 14px;
+}
+
+.ru-page textarea.form-control {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Contact information panel */
+.ru-page .rounded-4 {
+  border-radius: 18px !important;
+}
+
+/* Success message */
+.ru-page .alert-success {
+  background-color: #e8f5eb;
+  color: #286a45;
+  border: 1px solid #cce8d2;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ru-page .display-5 {
+    font-size: 2.2rem;
+  }
+
+  .ru-page .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ru-page .card {
+    padding: 22px !important;
+  }
+}

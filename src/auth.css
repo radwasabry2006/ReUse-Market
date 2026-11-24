@@ -1,0 +1,384 @@
+/* ==========================================================
+   Login + Register pages
+   - Everything is scoped under .auth (no clash with Bootstrap)
+   - NO SCROLLING: sizes are based on the screen height (--u = 1% of
+     the height), so the whole page always fits in one screen.
+   ========================================================== */
+.auth {
+  --u: 1vh;
+  --a-green: #1b6a45;
+  --a-green-dark: #14573a;
+  --a-ink: #0f4a33;
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  /* card width follows the background picture, so it always covers the same spot */
+  grid-template-columns: minmax(0, max(calc(66.7 * var(--u)), 37.5vw)) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 4vw;
+  padding: calc(2 * var(--u)) clamp(16px, 10.75vw, 230px);
+  background: #f3efdf center bottom / cover no-repeat;
+  overflow-x: hidden;
+}
+@supports (height: 1dvh) {
+  .auth {
+    --u: 1dvh;
+    min-height: 100dvh;
+  }
+}
+.auth-login {
+  background-image: url('./assets/auth-bg-login.jpg');
+}
+.auth-register {
+  background-image: url('./assets/auth-bg-register.jpg');
+}
+
+/* ---------- card ---------- */
+.auth .auth-card {
+  width: 100%;
+  background: #fcfaf3;
+  border-radius: calc(4.2 * var(--u));
+  box-shadow: 0 18px 50px rgba(60, 70, 40, 0.18);
+  padding: calc(2.9 * var(--u)) min(calc(6.4 * var(--u)), 6vw) calc(4 * var(--u));
+  text-align: center;
+}
+.auth .auth-leaf {
+  display: block;
+  width: calc(10.7 * var(--u));
+  height: auto;
+  margin: 0 auto calc(0.45 * var(--u));
+}
+.auth h1 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: min(2.8rem, calc(5 * var(--u)), 8.4vw);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--a-green-dark);
+  margin: 0 0 calc(0.7 * var(--u));
+}
+.auth .sub {
+  font-size: max(12px, calc(2 * var(--u)));
+  color: #475569;
+  margin: 0 0 calc(3.3 * var(--u));
+}
+.auth form {
+  text-align: left;
+}
+
+/* ---------- labels + inputs ---------- */
+.auth label {
+  display: flex;
+  align-items: center;
+  gap: calc(0.8 * var(--u));
+  font-weight: 700;
+  font-size: max(12px, calc(2 * var(--u)));
+  color: var(--a-ink);
+  margin: calc(3.1 * var(--u)) 0 calc(1.2 * var(--u));
+}
+.auth form label:first-of-type {
+  margin-top: 0;
+}
+.auth label svg {
+  width: calc(2.45 * var(--u));
+  height: auto;
+  min-width: 15px;
+  color: var(--a-green);
+}
+.auth .input {
+  width: 100%;
+  height: max(38px, calc(6 * var(--u)));
+  border: 1.5px solid #d6dbd2;
+  border-radius: 999px;
+  background: #fffefb;
+  padding: 0 calc(2.4 * var(--u));
+  font-size: max(13px, calc(1.95 * var(--u)));
+  color: #1f3a2f;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(60, 80, 60, 0.05);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.auth .input::placeholder {
+  color: #8c9aa0;
+}
+.auth .input:focus {
+  border-color: var(--a-green);
+  box-shadow: 0 0 0 3px rgba(27, 106, 69, 0.15);
+}
+
+/* icon inside the field (Register page) */
+.auth .field {
+  position: relative;
+  margin-bottom: calc(1.5 * var(--u));
+}
+.auth .field .input {
+  padding-left: max(46px, calc(6.9 * var(--u)));
+}
+.auth .field-icon {
+  position: absolute;
+  left: calc(2.4 * var(--u));
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(2.7 * var(--u));
+  min-width: 17px;
+  height: auto;
+  color: var(--a-green);
+  pointer-events: none;
+}
+
+/* password box + eye */
+.auth .pw {
+  position: relative;
+}
+.auth .pw .input {
+  padding-right: max(42px, calc(6.4 * var(--u)));
+}
+.auth .eye-btn {
+  position: absolute;
+  right: calc(2 * var(--u));
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #3f5148;
+  padding: 4px;
+  cursor: pointer;
+}
+.auth .eye-btn svg {
+  width: calc(2.45 * var(--u));
+  min-width: 16px;
+  height: auto;
+}
+.auth .eye-btn:hover {
+  color: var(--a-green);
+}
+
+.auth .forgot {
+  display: block;
+  text-align: right;
+  font-size: max(12px, calc(1.75 * var(--u)));
+  font-weight: 700;
+  color: var(--a-green-dark);
+  text-decoration: none;
+  margin: calc(0.9 * var(--u)) 0 calc(1.5 * var(--u));
+}
+.auth .forgot:hover {
+  text-decoration: underline;
+}
+.auth .error {
+  color: #b23a4e;
+  font-size: max(12px, calc(1.65 * var(--u)));
+  margin: 0 0 calc(1 * var(--u));
+  text-align: center;
+}
+
+/* ---------- buttons ---------- */
+.auth .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(0.8 * var(--u));
+  width: 100%;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.auth .btn svg {
+  width: calc(2.4 * var(--u));
+  min-width: 16px;
+  height: auto;
+}
+.auth .btn.btn-primary {
+  height: max(42px, calc(6.45 * var(--u)));
+  background: var(--a-green);
+  border: 0;
+  color: #fff;
+  font-size: max(15px, calc(2.3 * var(--u)));
+  box-shadow: 0 6px 14px rgba(27, 106, 69, 0.28);
+  margin-top: calc(0.45 * var(--u));
+}
+.auth .btn.btn-primary:hover,
+.auth .btn.btn-primary:focus-visible {
+  background: var(--a-green-dark);
+  transform: translateY(-1px);
+}
+.auth .btn.btn-outline {
+  height: max(40px, calc(6 * var(--u)));
+  background: #fffefb;
+  border: 1.5px solid #d6dbd2;
+  color: #1f3a2f;
+  font-size: max(13px, calc(1.9 * var(--u)));
+}
+.auth .btn.btn-outline:hover,
+.auth .btn.btn-outline:focus-visible {
+  background: #f1f6ef;
+  border-color: #b8c9b9;
+}
+.auth .google-logo {
+  width: calc(2.9 * var(--u));
+  min-width: 18px;
+  height: auto;
+}
+
+.auth .or {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #475569;
+  font-size: max(12px, calc(1.8 * var(--u)));
+  margin: calc(1.55 * var(--u)) 0;
+}
+.auth .or::before,
+.auth .or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #d6dbd2;
+}
+.auth .switch {
+  margin: calc(2.8 * var(--u)) 0 0;
+  font-size: max(12px, calc(1.8 * var(--u)));
+  color: #1c2a24;
+}
+.auth .switch a {
+  color: var(--a-green);
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+.auth .switch a:hover {
+  text-decoration: underline;
+}
+/* "please log in to ..." message (replaces the subtitle) */
+.auth .sub.notice {
+  color: var(--a-green-dark);
+  font-weight: 600;
+}
+
+/* ---------- right side text ---------- */
+.auth .auth-side {
+  /* stays in the same spot of the picture (above the cart) on every screen */
+  position: absolute;
+  left: 65.4vw;
+  bottom: max(24.7vw, 43.9vh);
+  transform: translateX(-50%);
+  text-align: center;
+  width: max-content;
+  max-width: calc(49 * var(--u));
+}
+.auth .auth-side h2 {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 500;
+  font-size: min(3.3rem, 3.4vw, calc(5.87 * var(--u)));
+  line-height: 1.12;
+  color: var(--a-green-dark);
+  margin-bottom: calc(1.5 * var(--u));
+}
+.auth .auth-side p {
+  font-size: max(12px, calc(1.8 * var(--u)));
+  line-height: 1.55;
+  color: #1c2a24;
+  max-width: calc(34.4 * var(--u));
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* the Register card sits a little higher in the design */
+.auth-register .auth-card {
+  transform: translateY(-1.2vh);
+}
+
+/* ---------- tablets & phones ---------- */
+@media (max-width: 991.98px) {
+  .auth {
+    grid-template-columns: minmax(0, min(560px, 100%));
+    justify-content: center;
+    align-content: center;
+    padding: calc(2 * var(--u)) 16px;
+    background-position: 88% bottom;
+  }
+  /* the card is what matters on small screens, the slogan would sit on the cart */
+  .auth .auth-side {
+    display: none;
+  }
+  .auth-register .auth-card {
+    transform: none;
+  }
+}
+
+/* ---------- Google demo window ---------- */
+.gdemo-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(20, 40, 30, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.auth .gdemo {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px 28px 22px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+.gdemo h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #14573a;
+  margin: 10px 0 4px;
+}
+.gdemo p {
+  color: #5a6b62;
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+}
+.gdemo .input {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid #d6dbd2;
+  border-radius: 999px;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  outline: none;
+}
+.gdemo .input:focus {
+  border-color: #1b6a45;
+  box-shadow: 0 0 0 3px rgba(27, 106, 69, 0.15);
+}
+.gdemo .error {
+  color: #b23a4e;
+  margin: 0 0 10px;
+}
+.gdemo .btn.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: #1b6a45;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.gdemo .btn.btn-primary:hover {
+  background: #14573a;
+}
+.gdemo-cancel {
+  margin-top: 10px;
+  border: 0;
+  background: transparent;
+  color: #5a6b62;
+}
+
+.auth .gdemo .google-logo {
+  display: block;
+  margin: 0 auto;
+}
